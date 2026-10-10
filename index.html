@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mahdi Online | M.O.1.0</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌐</text></svg>">
+</head>
+<body>
+
+    <!-- ===== صفحة تسجيل الدخول ===== -->
+    <div id="authScreen" class="auth-screen">
+        <div class="auth-box">
+            <div class="logo">
+                <h1>Mahdi<span>Online</span></h1>
+                <p class="version">الإصدار M.O.1.0</p>
+            </div>
+
+            <div class="tabs">
+                <button class="tab active" onclick="switchTab('login')">تسجيل الدخول</button>
+                <button class="tab" onclick="switchTab('signup')">حساب جديد</button>
+            </div>
+
+            <!-- نموذج تسجيل الدخول -->
+            <form id="loginForm" class="form active" onsubmit="handleLogin(event)">
+                <input type="text" id="loginUser" placeholder="اسم المستخدم" required>
+                <input type="password" id="loginPass" placeholder="كلمة المرور" required>
+                <button type="submit" class="btn-primary">دخول</button>
+            </form>
+
+            <!-- نموذج إنشاء حساب -->
+            <form id="signupForm" class="form" onsubmit="handleSignup(event)">
+                <input type="text" id="signupName" placeholder="الاسم الكامل" required>
+                <input type="text" id="signupUser" placeholder="اسم المستخدم" required>
+                <input type="password" id="signupPass" placeholder="كلمة المرور" required>
+                <button type="submit" class="btn-primary">إنشاء الحساب</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- ===== الواجهة الرئيسية ===== -->
+    <div id="mainApp" class="main-app hidden">
+
+        <!-- الشريط العلوي -->
+        <header class="navbar">
+            <div class="nav-logo">Mahdi<span>Online</span></div>
+            <div class="nav-user">
+                <span id="currentUser"></span>
+                <button class="btn-logout" onclick="logout()">خروج</button>
+            </div>
+        </header>
+
+        <div class="container">
+
+            <!-- الشريط الجانبي -->
+            <aside class="sidebar">
+                <div class="profile-card">
+                    <div class="avatar" id="userAvatar">م</div>
+                    <h3 id="profileName">المستخدم</h3>
+                    <p id="profileUser">@user</p>
+                    <div class="stats">
+                        <div><strong id="postsCount">0</strong><span>منشور</span></div>
+                        <div><strong id="likesCount">0</strong><span>إعجاب</span></div>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- منطقة المنشورات -->
+            <main class="feed">
+
+                <!-- صندوق إنشاء منشور -->
+                <div class="create-post">
+                    <textarea id="postContent" placeholder="شنو راك تفكر فيه؟ ✍️"></textarea>
+                    <div class="post-actions">
+                        <input type="file" id="postImage" accept="image/*" hidden>
+                        <label for="postImage" class="btn-icon">📷 صورة</label>
+                        <button class="btn-primary" onclick="createPost()">نشر</button>
+                    </div>
+                    <img id="imagePreview" class="image-preview hidden" alt="معاينة">
+                </div>
+
+                <!-- قائمة المنشورات -->
+                <div id="postsList" class="posts-list"></div>
+
+            </main>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
